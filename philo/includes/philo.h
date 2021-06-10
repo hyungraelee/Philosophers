@@ -8,15 +8,26 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
+
+struct s_info
+{
+	int		num_of_philo;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		must_eat_count;
+	t_philo	*philo;
+};
 
 struct s_philo
 {
-	int	num_of_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	must_eat_count;
+	int				nb;
+	int				fork_l;
+	int				fork_r;
+	pthread_t		thread;
+	pthread_mutex_t	mutex;
 };
 
 

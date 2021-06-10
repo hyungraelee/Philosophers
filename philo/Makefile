@@ -1,6 +1,6 @@
 NAME = philo
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror -lpthread
+CFLAGS = -lpthread #-Wall -Wextra -Werror
 # CFLAGS = -g3 -fsanitize=address
 # ifeq ($(DEBUG),true)
 # 	CFLAGS += -g
