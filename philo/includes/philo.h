@@ -18,6 +18,9 @@ struct s_info
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		must_eat_count;
+	int		basetime;
+	int		finish;
+	pthread_mutex_t	*fork;
 	t_philo	*philo;
 };
 
@@ -26,8 +29,10 @@ struct s_philo
 	int				nb;
 	int				fork_l;
 	int				fork_r;
+	int				realtime;
 	pthread_t		thread;
-	pthread_mutex_t	mutex;
+	// pthread_mutex_t	mutex;
+	t_info			*info;
 };
 
 

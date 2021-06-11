@@ -8,6 +8,7 @@ void	init_info(t_info *info, char **argv)
 	info->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		info->must_eat_count = ft_atoi(argv[5]);
+	info->finish = 0;
 }
 
 int		check_info(t_info *info)
@@ -26,13 +27,25 @@ int		check_info(t_info *info)
 		return (1);
 }
 
-// void	init_philo(t_info *info)
-// {
-// 	int	i;
+int	init_philo(t_info *info)
+{
+	int	i;
 
-// 	i = -1;
-// 	info->philo = (t_philo *)malloc(sizeof(t_philo) * info->num_of_philo);
-// }
+	i = -1;
+	info->philo = (t_philo *)malloc(sizeof(t_philo) * info->num_of_philo);
+	while (++i < info->num_of_philo)
+	{
+		info->philo[i].nb = i;
+		info->philo[i].fork_l = i;
+		info->philo[i].fork_r = (i + 1) % info->num_of_philo;
+		// if (pthread_mutex_init(&(info->philo[i].mutex), NULL))
+		// 	return (-1);
+		if (pthread_mutex_init(&(info->fork[i]), NULL))
+			return (-1);
+		info->philo[i].info = info;
+	}
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -44,6 +57,8 @@ int	main(int argc, char **argv)
 	init_info(&info, argv);
 	if (check_info(&info) < 0)
 		return (-1);
-	// init_philo(&info);
+	if (init_philo(&info) < 0)
+		return (-1);
+	init_thread(&info);
 	return (0);
 }
