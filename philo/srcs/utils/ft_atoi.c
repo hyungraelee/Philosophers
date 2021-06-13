@@ -1,3 +1,5 @@
+#include "philo.h"
+
 int	ft_atoi(const char *nptr)
 {
 	long long	res;

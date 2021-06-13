@@ -1,7 +1,7 @@
 NAME = philo
 CC = gcc
-CFLAGS = -lpthread #-Wall -Wextra -Werror
-# CFLAGS = -g3 -fsanitize=address
+# CFLAGS = -lpthread #-Wall -Wextra -Werror
+CFLAGS = -g3 -fsanitize=address
 # ifeq ($(DEBUG),true)
 # 	CFLAGS += -g
 # endif
@@ -11,9 +11,13 @@ SRCS_DIR =	./srcs	\
 OBJS_DIR = ./objs
 INC_DIR = ./includes
 SRCS =	./srcs/main.c	\
+		./srcs/print.c	\
+		./srcs/routine.c	\
+		./srcs/thread.c		\
 		./srcs/utils/ft_atoi.c	\
 		./srcs/utils/ft_putchar_fd.c	\
 		./srcs/utils/ft_putendl_fd.c	\
+		./srcs/utils/ft_putnbr_fd.c		\
 		./srcs/utils/ft_putstr_fd.c		\
 		./srcs/utils/ft_strlen.c
 

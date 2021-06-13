@@ -7,6 +7,15 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include "utils.h"
+
+# define FORK 1
+# define EATING 2
+# define SLEEPING 3
+# define THINKING 4
+# define DIED 5
+# define FULL 6
+
 
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
@@ -21,6 +30,7 @@ struct s_info
 	int		basetime;
 	int		finish;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	print;
 	t_philo	*philo;
 };
 
@@ -30,10 +40,18 @@ struct s_philo
 	int				fork_l;
 	int				fork_r;
 	int				realtime;
+	int				meals;
 	pthread_t		thread;
-	// pthread_mutex_t	mutex;
+	pthread_mutex_t	eating;
 	t_info			*info;
 };
 
+
+int		init_thread(t_info *info);
+int		get_time(void);
+void	print_msg(t_philo *philo, int status);
+void	eat(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	thinking(t_philo *philo);
 
 #endif
