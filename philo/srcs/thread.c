@@ -8,16 +8,17 @@ int	get_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-int		check_meals(t_info *info)
+int		check_meals(t_philo *philo)
 {
 	int	i;
 
 	i = -1;
-	while (++i < info->num_of_philo)
+	while (++i < philo->info->num_of_philo)
 	{
-		if (info->philo[i].meals != info->must_eat_count)
+		if (philo->info->philo[i].meals != philo->info->must_eat_count)
 			return (0);
 	}
+	philo->info->finish = 1;
 	return (1);
 }
 
@@ -31,7 +32,7 @@ void	*routine(void *args)
 		if (philo->info->finish)
 			break ;
 		eat(philo);
-		if (philo->info->must_eat_count > 0 && check_meals(philo->info))
+		if (philo->info->must_eat_count > 0 && check_meals(philo))
 		{
 			// philo->info->finish = 1;
 			print_msg(philo, FULL);

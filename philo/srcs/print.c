@@ -25,7 +25,7 @@ void	print_msg(t_philo *philo, int status)
 	ft_putnbr_fd(get_time() - philo->info->basetime, 1);
 	if (status == FULL)
 	{
-		philo->info->finish = 1;
+		// philo->info->finish = 1;
 		ft_putendl_fd("\tall philosophers take the meals", 1);
 	}
 	else
