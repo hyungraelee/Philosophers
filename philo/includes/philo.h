@@ -15,7 +15,9 @@
 # define THINKING 4
 # define DIED 5
 # define FULL 6
-
+# define B_RED "\033[1;5;31m"
+# define B_GREEN "\033[1;5;92m"
+# define C_RESET "\e[0m"
 
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;

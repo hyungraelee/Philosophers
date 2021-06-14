@@ -24,11 +24,6 @@ void	print_msg(t_philo *philo, int status)
 		pthread_mutex_unlock(&philo->info->print);
 		return ;
 	}
-	// if (philo->info->finish && !philo->itsme)
-	// {
-	// 	pthread_mutex_unlock(&philo->info->print);
-	// 	return ;
-	// }
 	ft_putnbr_fd(get_time() - philo->info->basetime, 1);
 	if (status == FULL)
 		ft_putendl_fd("\tall philosophers take the meals", 1);

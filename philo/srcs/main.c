@@ -56,6 +56,21 @@ int	init_philo(t_info *info)
 	return (0);
 }
 
+void	clean_info(t_info *info)
+{
+	int	i;
+
+	i = -1;
+	pthread_mutex_destroy(&info->print);
+	while (++i < info->num_of_philo)
+	{
+		pthread_mutex_destroy(&info->fork[i]);
+		pthread_mutex_destroy(&info->philo[i].eating);
+	}
+	free(info->philo);
+	free(info->fork);
+}
+
 int	main(int argc, char **argv)
 {
 	t_info	info;
@@ -69,5 +84,6 @@ int	main(int argc, char **argv)
 	if (init_philo(&info) < 0)
 		return (-1);
 	init_thread(&info);
+	clean_info(&info);
 	return (0);
 }
