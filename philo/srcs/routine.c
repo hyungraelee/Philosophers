@@ -2,30 +2,46 @@
 
 void	pick_up_fork(t_philo *philo)
 {
-	if (philo->nb % 2 == 0)	//Â¦¼ö¹ø
+	if (philo->nb != philo->info->num_of_philo)
 	{
 		pthread_mutex_lock(&(philo->info->fork[philo->fork_l]));
+		// if (philo->info->finish)
+		// {
+		// 	pthread_mutex_unlock(&(philo->info->fork[philo->fork_l]));
+		// 	return (0);
+		// }
 		pthread_mutex_lock(&(philo->info->fork[philo->fork_r]));
 	}
-	else	//È¦¼ö¹ø
+	else
 	{
 		pthread_mutex_lock(&(philo->info->fork[philo->fork_r]));
+		// if (philo->info->finish)
+		// {
+		// 	pthread_mutex_unlock(&(philo->info->fork[philo->fork_r]));
+		// 	return (0);
+		// }
 		pthread_mutex_lock(&(philo->info->fork[philo->fork_l]));
 	}
+	// return (1);
 }
 
 void	put_down_fork(t_philo *philo)
 {
-	if (philo->nb % 2 == 0)	//Â¦¼ö¹ø
+	if (philo->nb != philo->info->num_of_philo)
 	{
 		pthread_mutex_unlock(&(philo->info->fork[philo->fork_l]));
+		// if (philo->info->finish)
+		// 	return (0);
 		pthread_mutex_unlock(&(philo->info->fork[philo->fork_r]));
 	}
-	else	//È¦¼ö¹ø
+	else
 	{
 		pthread_mutex_unlock(&(philo->info->fork[philo->fork_r]));
+		// if (philo->info->finish)
+		// 	return (0);
 		pthread_mutex_unlock(&(philo->info->fork[philo->fork_l]));
 	}
+	// return (1);
 }
 
 void	eat(t_philo *philo)
@@ -42,8 +58,12 @@ void	eat(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
+	int	start;
+
 	print_msg(philo, SLEEPING);
-	usleep(1000 * philo->info->time_to_sleep);
+	start = get_time();
+	while (get_time() - start <= philo->info->time_to_sleep && !philo->info->finish)
+		usleep(1000);
 }
 
 void	thinking(t_philo *philo)

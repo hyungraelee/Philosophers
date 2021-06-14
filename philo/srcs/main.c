@@ -16,11 +16,11 @@ void	init_info(t_info *info, char **argv)
 
 int		check_info(t_info *info)
 {
-	if (info->num_of_philo < 2 || info->num_of_philo > 200)
+	if (info->num_of_philo < 0 || info->num_of_philo > 200)
 		return (ft_putendl_fd("Error : Wrong number of philosopher", 2));
 	else if (info->time_to_die < 60)
 		return (ft_putendl_fd("Error : Wrong number : time to die", 2));
-	else if (info->time_to_eat < 20)
+	else if (info->time_to_eat < 60)
 		return (ft_putendl_fd("Error : Wrong number : time to eat", 2));
 	else if (info->time_to_sleep < 60)
 		return (ft_putendl_fd("Error : Wrong number : time to sleep", 2));
