@@ -33,12 +33,10 @@ void	eat(t_philo *philo)
 	pick_up_fork(philo);
 	print_msg(philo, EATING);
 	philo->realtime = get_time();
-	// pthread_mutex_lock(&philo->eating);
-	while (get_time() - philo->realtime <= philo->info->time_to_eat && !philo->info->finish)
+	while (get_time() - philo->realtime <= philo->info->time_to_eat \
+	&& !philo->info->finish)
 		usleep(1000);
-	// usleep(1000 * philo->info->time_to_eat);
 	philo->meals++;
-	// pthread_mutex_unlock(&philo->eating);
 	put_down_fork(philo);
 }
 
@@ -48,7 +46,8 @@ void	sleeping(t_philo *philo)
 
 	print_msg(philo, SLEEPING);
 	start = get_time();
-	while (get_time() - start <= philo->info->time_to_sleep && !philo->info->finish)
+	while (get_time() - start <= philo->info->time_to_sleep \
+	&& !philo->info->finish)
 		usleep(1000);
 }
 

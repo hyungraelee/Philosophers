@@ -22,7 +22,7 @@
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
 
-struct s_info
+struct	s_info
 {
 	int		num_of_philo;
 	int		time_to_die;
@@ -36,7 +36,7 @@ struct s_info
 	t_philo	*philo;
 };
 
-struct s_philo
+struct	s_philo
 {
 	int				nb;
 	int				fork_l;
@@ -44,10 +44,8 @@ struct s_philo
 	int				realtime;
 	int				meals;
 	pthread_t		thread;
-	// pthread_mutex_t	eating;
 	t_info			*info;
 };
-
 
 int		init_thread(t_info *info);
 int		get_time(void);

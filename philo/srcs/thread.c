@@ -1,6 +1,6 @@
 #include "philo.h"
 
-int	get_time(void)
+int		get_time(void)
 {
 	struct timeval	time;
 
@@ -57,47 +57,40 @@ void	*monitor(void *args)
 	philo = args;
 	while (!philo->info->finish)
 	{
-		// pthread_mutex_lock(&philo->eating);
 		if (get_time() - philo->realtime >= philo->info->time_to_die)
 		{
 			ft_putstr_fd(B_RED, 1);
 			print_msg(philo, DIED);
 			ft_putstr_fd(C_RESET, 1);
 			philo->info->finish = DIED;
-			// pthread_mutex_unlock(&philo->eating);
 			return (NULL);
 		}
-		// pthread_mutex_unlock(&philo->eating);
 		usleep(500);
 	}
 	return (NULL);
 }
 
-int	init_thread(t_info *info)
+int		init_thread(t_info *info)
 {
 	int			i;
 	pthread_t	thread;
 
 	i = -1;
 	info->basetime = get_time();
-	// thread = (pthread_t *)malloc(sizeof(pthread_t) * info->num_of_philo);
 	while (++i < info->num_of_philo)
 	{
 		info->philo[i].realtime = get_time();
 		if (pthread_create(&thread, NULL, routine, &(info->philo[i])))
 			return (-1);
 		pthread_detach(thread);
-		// if (pthread_create(&thread[i], NULL, routine, &(info->philo[i])))
-		// 	return (-1);
-		if (pthread_create(&(info->philo[i].thread), NULL, monitor, &(info->philo[i])))
+		if (pthread_create(&(info->philo[i].thread), NULL, \
+		monitor, &(info->philo[i])))
 			return (-1);
 		usleep(500);
 	}
 	i = -1;
 	while (++i < info->num_of_philo)
 	{
-		// if (pthread_join(thread[i], NULL))
-		// 	return (-1);
 		if (pthread_join(info->philo[i].thread, NULL))
 			return (-1);
 	}
