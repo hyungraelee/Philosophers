@@ -44,7 +44,7 @@ struct s_philo
 	int				realtime;
 	int				meals;
 	pthread_t		thread;
-	pthread_mutex_t	eating;
+	// pthread_mutex_t	eating;
 	t_info			*info;
 };
 

@@ -57,17 +57,17 @@ void	*monitor(void *args)
 	philo = args;
 	while (!philo->info->finish)
 	{
-		pthread_mutex_lock(&philo->eating);
+		// pthread_mutex_lock(&philo->eating);
 		if (get_time() - philo->realtime >= philo->info->time_to_die)
 		{
 			ft_putstr_fd(B_RED, 1);
 			print_msg(philo, DIED);
 			ft_putstr_fd(C_RESET, 1);
 			philo->info->finish = DIED;
-			pthread_mutex_unlock(&philo->eating);
+			// pthread_mutex_unlock(&philo->eating);
 			return (NULL);
 		}
-		pthread_mutex_unlock(&philo->eating);
+		// pthread_mutex_unlock(&philo->eating);
 		usleep(500);
 	}
 	return (NULL);
