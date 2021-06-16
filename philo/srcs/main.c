@@ -60,6 +60,7 @@ void	clean_info(t_info *info)
 {
 	int	i;
 
+	usleep(2000);
 	i = -1;
 	pthread_mutex_destroy(&info->print);
 	while (++i < info->num_of_philo)
