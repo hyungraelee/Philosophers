@@ -5,12 +5,16 @@ void	pick_up_fork(t_philo *philo)
 	if (philo->nb != philo->info->num_of_philo - 1)
 	{
 		pthread_mutex_lock(&(philo->info->fork[philo->fork_l]));
+		print_msg(philo, FORK);
 		pthread_mutex_lock(&(philo->info->fork[philo->fork_r]));
+		print_msg(philo, FORK);
 	}
 	else
 	{
 		pthread_mutex_lock(&(philo->info->fork[philo->fork_r]));
+		print_msg(philo, FORK);
 		pthread_mutex_lock(&(philo->info->fork[philo->fork_l]));
+		print_msg(philo, FORK);
 	}
 }
 

@@ -18,9 +18,7 @@ int		check_meals(t_philo *philo)
 		if (philo->info->philo[i].meals != philo->info->must_eat_count)
 			return (0);
 	}
-	ft_putstr_fd(B_GREEN, 1);
 	print_msg(philo, FULL);
-	ft_putstr_fd(C_RESET, 1);
 	philo->info->finish = FULL;
 	return (1);
 }
@@ -59,9 +57,7 @@ void	*monitor(void *args)
 	{
 		if (get_time() - philo->realtime >= philo->info->time_to_die)
 		{
-			ft_putstr_fd(B_RED, 1);
 			print_msg(philo, DIED);
-			ft_putstr_fd(C_RESET, 1);
 			philo->info->finish = DIED;
 			return (NULL);
 		}

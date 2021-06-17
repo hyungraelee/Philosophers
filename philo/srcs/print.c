@@ -3,7 +3,7 @@
 void	print_status(t_philo *philo, int status)
 {
 	ft_putstr_fd("\tPhilosopher ", 1);
-	ft_putnbr_fd(philo->nb, 1);
+	ft_putnbr_fd(philo->nb + 1, 1);
 	if (status == FORK)
 		ft_putendl_fd(" : has taken a fork", 1);
 	else if (status == EATING)

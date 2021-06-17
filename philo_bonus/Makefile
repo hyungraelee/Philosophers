@@ -10,7 +10,10 @@ SRCS_DIR =	./srcs	\
 			./srcs/utils
 OBJS_DIR = ./objs
 INC_DIR = ./includes
-SRCS =	./srcs/main.c
+SRCS =	./srcs/main.c	\
+		./srcs/utils/ft_atoi.c	\
+		./srcs/utils/ft_putendl_fd.c
+
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 vpath %.c $(SRCS_DIR)
