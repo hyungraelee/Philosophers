@@ -11,6 +11,14 @@
 # include <semaphore.h>
 # include "utils.h"
 
+# define FORK 1
+# define EATING 2
+# define SLEEPING 3
+# define THINKING 4
+# define DIED 5
+# define FULL 6
+# define SEM_END "sem_end"
+# define SEM_FULL "sem_full"
 # define SEM_FORK "sem_fork"
 # define SEM_PRINT "sem_print"
 
@@ -26,6 +34,8 @@ struct	s_info
 	int		must_eat_count;
 	int		basetime;
 	int		finish;
+	sem_t	*died;
+	sem_t	*full;
 	sem_t	*fork;
 	sem_t	*print;
 	t_philo	*philo;
@@ -33,11 +43,14 @@ struct	s_info
 
 struct	s_philo
 {
-	int		nb;
-	int		realtime;
-	int		meals;
-	pid_t	pid;
-	t_info	*info;
+	int			nb;
+	int			realtime;
+	int			meals;
+	pid_t		pid;
+	pthread_t	thread;
+	// pthread_t	end;
+	// pthread_t	full;
+	t_info		*info;
 };
 
 
