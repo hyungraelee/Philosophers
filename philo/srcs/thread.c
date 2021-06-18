@@ -57,12 +57,15 @@ void	*monitor(void *args)
 	philo = args;
 	while (!philo->info->finish)
 	{
+		pthread_mutex_lock(&philo->eating);
 		if (get_time() - philo->realtime >= philo->info->time_to_die)
 		{
 			print_msg(philo, DIED);
 			philo->info->finish = DIED;
+			pthread_mutex_unlock(&philo->eating);
 			return (NULL);
 		}
+		pthread_mutex_unlock(&philo->eating);
 		usleep(100);
 	}
 	return (NULL);

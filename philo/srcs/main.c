@@ -49,6 +49,8 @@ int		init_philo(t_info *info)
 		info->philo[i].fork_l = i;
 		info->philo[i].fork_r = (i + 1) % info->num_of_philo;
 		info->philo[i].meals = 0;
+		if (pthread_mutex_init(&info->philo[i].eating, NULL))
+			return (-1);
 		if (pthread_mutex_init(&(info->fork[i]), NULL))
 			return (-1);
 		info->philo[i].info = info;

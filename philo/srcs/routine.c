@@ -21,12 +21,14 @@ void	put_down_fork(t_philo *philo)
 void	eat(t_philo *philo)
 {
 	pick_up_fork(philo);
+	pthread_mutex_lock(&philo->eating);
 	print_msg(philo, EATING);
 	philo->realtime = get_time();
 	while (get_time() - philo->realtime <= philo->info->time_to_eat \
 	&& !philo->info->finish)
 		usleep(1000);
 	philo->meals++;
+	pthread_mutex_unlock(&philo->eating);
 	put_down_fork(philo);
 }
 
