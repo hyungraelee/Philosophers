@@ -3,6 +3,7 @@
 void	eat(t_philo *philo)
 {
 	sem_wait(philo->info->fork);
+	print_msg(philo, FORK);
 	sem_wait(philo->info->fork);
 	print_msg(philo, FORK);
 	print_msg(philo, EATING);
