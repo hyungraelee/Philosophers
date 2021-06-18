@@ -48,7 +48,7 @@ struct	s_philo
 	int			meals;
 	pid_t		pid;
 	pthread_t	thread;
-	// pthread_t	end;
+	pthread_t	end;
 	// pthread_t	full;
 	t_info		*info;
 };

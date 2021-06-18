@@ -44,7 +44,7 @@ int		init_philo(t_info *info)
 		info->philo[i].meals = 0;
 		info->philo[i].info = info;
 	}
-	info->end = sem_open(SEM_END, O_CREAT, 0644, 0);
+	info->died = sem_open(SEM_END, O_CREAT, 0644, 0);
 	info->full = sem_open(SEM_FULL, O_CREAT, 0644, 0);
 	info->fork = sem_open(SEM_FORK, O_CREAT, 0644, info->num_of_philo);
 	info->print = sem_open(SEM_PRINT, O_CREAT, 0644, 1);
