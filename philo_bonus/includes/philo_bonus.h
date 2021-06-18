@@ -34,6 +34,7 @@ struct	s_info
 	int		must_eat_count;
 	int		basetime;
 	int		finish;
+	int		print_died;
 	sem_t	*died;
 	sem_t	*full;
 	sem_t	*fork;
@@ -49,10 +50,18 @@ struct	s_philo
 	pid_t		pid;
 	pthread_t	thread;
 	pthread_t	end;
-	// pthread_t	full;
 	t_info		*info;
 };
 
-
+int		process(t_info *info);
+int		routine(t_philo *philo);
+void	eat(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	thinking(t_philo *philo);
+void	print_msg(t_philo *philo, int status);
+void	print_full(t_info *info);
+void	print_died(t_philo *philo);
+int		get_time(void);
+int		thread_create_detach(pthread_t *thread, void *func, void *arg);
 
 #endif
