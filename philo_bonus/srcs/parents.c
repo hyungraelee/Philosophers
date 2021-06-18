@@ -10,6 +10,8 @@ void	*check_full(void *args)
 	while (1)
 	{
 		sem_wait(info->full);
+		if (info->finish)
+			return (NULL);
 		full_philo++;
 		if (full_philo == info->num_of_philo)
 			break ;
@@ -21,6 +23,7 @@ void	*check_full(void *args)
 void	died_process(t_philo *philo)
 {
 	print_died(philo);
+	philo->info->finish = DIED;
 	philo->info->print_died++;
 }
 

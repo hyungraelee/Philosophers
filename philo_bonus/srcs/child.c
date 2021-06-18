@@ -11,7 +11,7 @@ void	*monitor(void *args)
 		{
 			sem_post(philo->info->died);
 			philo->info->finish = DIED;
-			exit (1);
+			exit(1);
 		}
 		usleep(100);
 	}
@@ -39,11 +39,11 @@ int		routine(t_philo *philo)
 	while (!philo->info->finish)
 	{
 		eat(philo);
-		if (philo->info->must_eat_count > 0 && philo->meals == philo->info->must_eat_count)
+		if (philo->info->must_eat_count > 0 && \
+		philo->meals == philo->info->must_eat_count)
 		{
 			sem_post(philo->info->full);
 			philo->info->finish = FULL;
-			break ;
 		}
 		if (philo->info->finish)
 			break ;

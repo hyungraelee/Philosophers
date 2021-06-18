@@ -12,14 +12,10 @@ void	init_info(t_info *info, char **argv)
 	info->basetime = 0;
 	info->finish = 0;
 	info->print_died = 0;
-	sem_unlink(SEM_END);
-	sem_unlink(SEM_FULL);
-	sem_unlink(SEM_FORK);
-	sem_unlink(SEM_PRINT);
-	info->died = sem_open(SEM_END, O_CREAT, 0644, 0);
-	info->full = sem_open(SEM_FULL, O_CREAT, 0644, 0);
-	info->fork = sem_open(SEM_FORK, O_CREAT, 0644, info->num_of_philo);
-	info->print = sem_open(SEM_PRINT, O_CREAT, 0644, 1);
+	info->died = ft_sem_open(SEM_END, 0);
+	info->full = ft_sem_open(SEM_FULL, 0);
+	info->fork = ft_sem_open(SEM_FORK, info->num_of_philo);
+	info->print = ft_sem_open(SEM_PRINT, 1);
 }
 
 int		check_info(t_info *info)
@@ -56,7 +52,22 @@ int		init_philo(t_info *info)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+void	clean_info(t_info *info)
+{
+	if (info->finish == DIED)
+		sem_post(info->full);
+	sem_close(info->died);
+	sem_close(info->full);
+	sem_close(info->fork);
+	sem_close(info->print);
+	sem_unlink(SEM_END);
+	sem_unlink(SEM_FULL);
+	sem_unlink(SEM_FORK);
+	sem_unlink(SEM_PRINT);
+	free(info->philo);
+}
+
+int		main(int argc, char **argv)
 {
 	t_info	info;
 
@@ -70,6 +81,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (process(&info) < 0)
 		return (1);
-
+	clean_info(&info);
 	return (0);
 }

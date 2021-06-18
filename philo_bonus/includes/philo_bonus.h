@@ -17,10 +17,10 @@
 # define THINKING 4
 # define DIED 5
 # define FULL 6
-# define SEM_END "sem_end"
-# define SEM_FULL "sem_full"
-# define SEM_FORK "sem_fork"
-# define SEM_PRINT "sem_print"
+# define SEM_END "/sem_end"
+# define SEM_FULL "/sem_full"
+# define SEM_FORK "/sem_fork"
+# define SEM_PRINT "/sem_print"
 
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
@@ -63,5 +63,6 @@ void	print_full(t_info *info);
 void	print_died(t_philo *philo);
 int		get_time(void);
 int		thread_create_detach(pthread_t *thread, void *func, void *arg);
+sem_t	*ft_sem_open(char *name, int num);
 
 #endif

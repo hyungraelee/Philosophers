@@ -15,3 +15,9 @@ int		thread_create_detach(pthread_t *thread, void *func, void *arg)
 	pthread_detach(*thread);
 	return (1);
 }
+
+sem_t	*ft_sem_open(char *name, int num)
+{
+	sem_unlink(name);
+	return (sem_open(name, O_CREAT | O_EXCL, 0644, num));
+}
