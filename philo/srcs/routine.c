@@ -2,20 +2,16 @@
 
 void	pick_up_fork(t_philo *philo)
 {
-
 	pthread_mutex_lock(&(philo->info->fork[philo->fork_l]));
 	print_msg(philo, FORK);
 	pthread_mutex_lock(&(philo->info->fork[philo->fork_r]));
 	print_msg(philo, FORK);
-
 }
 
 void	put_down_fork(t_philo *philo)
 {
-
 	pthread_mutex_unlock(&(philo->info->fork[philo->fork_l]));
 	pthread_mutex_unlock(&(philo->info->fork[philo->fork_r]));
-
 }
 
 void	eat(t_philo *philo)

@@ -21,16 +21,16 @@ typedef struct s_philo	t_philo;
 
 struct	s_info
 {
-	int		num_of_philo;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		must_eat_count;
-	int		basetime;
-	int		finish;
+	int				num_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat_count;
+	int				basetime;
+	int				finish;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
-	t_philo	*philo;
+	t_philo			*philo;
 };
 
 struct	s_philo
