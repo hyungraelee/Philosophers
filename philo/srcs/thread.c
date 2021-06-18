@@ -28,6 +28,8 @@ void	*routine(void *args)
 	t_philo *philo;
 
 	philo = args;
+	if (philo->nb % 2 == 0)
+		usleep(1000 * philo->info->time_to_sleep);
 	while (!philo->info->finish)
 	{
 		if (philo->info->finish)
@@ -43,7 +45,7 @@ void	*routine(void *args)
 		thinking(philo);
 		if (philo->info->finish)
 			break ;
-		usleep(500);
+		// usleep(100);
 	}
 	return (NULL);
 }
@@ -61,7 +63,7 @@ void	*monitor(void *args)
 			philo->info->finish = DIED;
 			return (NULL);
 		}
-		usleep(500);
+		usleep(100);
 	}
 	return (NULL);
 }
@@ -82,7 +84,7 @@ int		init_thread(t_info *info)
 		if (pthread_create(&(info->philo[i].thread), NULL, \
 		monitor, &(info->philo[i])))
 			return (-1);
-		usleep(500);
+		// usleep(100);
 	}
 	i = -1;
 	while (++i < info->num_of_philo)
