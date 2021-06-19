@@ -29,7 +29,7 @@ void	*routine(void *args)
 
 	philo = args;
 	if (philo->nb % 2 == 0)
-		usleep(1000 * philo->info->time_to_sleep);
+		usleep(1000 * philo->info->time_to_eat);
 	while (!philo->info->finish)
 	{
 		if (philo->info->finish)
