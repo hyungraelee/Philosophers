@@ -1,7 +1,7 @@
 NAME = philo
 CC = gcc
-# CFLAGS = -lpthread #-Wall -Wextra -Werror
-CFLAGS = -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-lpthread
+# CFLAGS = -g3 -fsanitize=address
 # ifeq ($(DEBUG),true)
 # 	CFLAGS += -g
 # endif
