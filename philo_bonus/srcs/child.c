@@ -6,7 +6,7 @@
 /*   By: hyunlee <hyunlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 18:10:04 by hyunlee           #+#    #+#             */
-/*   Updated: 2021/06/19 18:29:44 by hyunlee          ###   ########.fr       */
+/*   Updated: 2021/06/19 19:41:54 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ void	*check_died(void *args)
 	return (NULL);
 }
 
+void	routine_exit(t_philo *philo)
+{
+	if (philo->imdied)
+		exit(1);
+	else
+		exit(0);
+}
+
 int		routine(t_philo *philo)
 {
 	philo->realtime = get_time();
@@ -79,6 +87,6 @@ int		routine(t_philo *philo)
 		if (philo->info->finish)
 			break ;
 	}
-	exit(0);
+	routine_exit(philo);
 	return (1);
 }
