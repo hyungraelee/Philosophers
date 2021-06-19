@@ -17,10 +17,14 @@ SRCS =	./srcs/main.c	\
 		./srcs/tools.c	\
 		./srcs/print.c	\
 		./srcs/utils/ft_atoi.c	\
+		./srcs/utils/ft_itoa.c	\
+		./srcs/utils/ft_memcpy.c	\
 		./srcs/utils/ft_putchar_fd.c	\
 		./srcs/utils/ft_putendl_fd.c	\
 		./srcs/utils/ft_putnbr_fd.c		\
 		./srcs/utils/ft_putstr_fd.c		\
+		./srcs/utils/ft_strdup.c		\
+		./srcs/utils/ft_strjoin.c		\
 		./srcs/utils/ft_strlen.c
 
 

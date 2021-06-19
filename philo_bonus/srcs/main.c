@@ -47,13 +47,25 @@ int		init_philo(t_info *info)
 		info->philo[i].nb = i;
 		info->philo[i].realtime = 0;
 		info->philo[i].meals = 0;
+		info->philo[i].imdied = 0;
 		info->philo[i].info = info;
+		make_sem_name(&info->philo[i]);
+		info->philo[i].eating = ft_sem_open(info->philo[i].eating_sem_name, 1);
 	}
 	return (1);
 }
 
 void	clean_info(t_info *info)
 {
+	int	i;
+
+	i = -1;
+	while (++i < info->num_of_philo)
+	{
+		sem_close(info->philo[i].eating);
+		sem_unlink(info->philo[i].eating_sem_name);
+		free(info->philo[i].eating_sem_name);
+	}
 	if (info->finish == DIED)
 		sem_post(info->full);
 	sem_close(info->died);

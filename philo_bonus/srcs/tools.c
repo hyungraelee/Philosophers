@@ -21,3 +21,11 @@ sem_t	*ft_sem_open(char *name, int num)
 	sem_unlink(name);
 	return (sem_open(name, O_CREAT | O_EXCL, 0644, num));
 }
+
+void	make_sem_name(t_philo *philo)
+{
+	char	*name;
+
+	name = ft_strdup("sem_name");
+	philo->eating_sem_name = ft_strjoin(name, ft_itoa(philo->nb));
+}

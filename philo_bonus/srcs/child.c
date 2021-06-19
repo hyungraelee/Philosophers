@@ -7,12 +7,16 @@ void	*monitor(void *args)
 	philo = args;
 	while (1)
 	{
+		sem_wait(philo->eating);
 		if (get_time() - philo->realtime >= philo->info->time_to_die)
 		{
-			sem_post(philo->info->died);
 			philo->info->finish = DIED;
-			exit(1);
+			philo->imdied = 1;
+			sem_post(philo->info->died);
+			sem_post(philo->eating);
+			return (NULL);
 		}
+		sem_post(philo->eating);
 		usleep(100);
 	}
 	return (NULL);
@@ -20,19 +24,24 @@ void	*monitor(void *args)
 
 void	*check_died(void *args)
 {
-	t_info	*info;
+	t_philo	*philo;
 
-	info = args;
-	sem_wait(info->died);
-	info->finish = DIED;
-	sem_post(info->died);
+	philo = args;
+	sem_wait(philo->info->died);
+	if (philo->imdied)
+	{
+		sem_post(philo->info->died);
+		exit(1);
+	}
+	philo->info->finish = DIED;
+	sem_post(philo->info->died);
 	return (NULL);
 }
 
 int		routine(t_philo *philo)
 {
 	philo->realtime = get_time();
-	if (thread_create_detach(&philo->end, check_died, philo->info) < 0)
+	if (thread_create_detach(&philo->end, check_died, philo) < 0)
 		return (-1);
 	if (thread_create_detach(&philo->thread, monitor, philo) < 0)
 		return (-1);

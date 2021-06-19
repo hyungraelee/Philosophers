@@ -47,9 +47,12 @@ struct	s_philo
 	int			nb;
 	int			realtime;
 	int			meals;
+	int			imdied;
 	pid_t		pid;
 	pthread_t	thread;
 	pthread_t	end;
+	sem_t		*eating;
+	char		*eating_sem_name;
 	t_info		*info;
 };
 
@@ -64,5 +67,6 @@ void	print_died(t_philo *philo);
 int		get_time(void);
 int		thread_create_detach(pthread_t *thread, void *func, void *arg);
 sem_t	*ft_sem_open(char *name, int num);
+void	make_sem_name(t_philo *philo);
 
 #endif
