@@ -6,7 +6,7 @@
 /*   By: hyunlee <hyunlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 18:10:12 by hyunlee           #+#    #+#             */
-/*   Updated: 2021/06/19 18:10:13 by hyunlee          ###   ########.fr       */
+/*   Updated: 2021/06/19 18:26:44 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	print_msg(t_philo *philo, int status)
 	if (philo->info->finish)
 	{
 		sem_post(philo->info->print);
+		sem_post(philo->info->fork);
+		sem_post(philo->info->fork);
 		return ;
 	}
 	ft_putnbr_fd(get_time() - philo->info->basetime, 1);

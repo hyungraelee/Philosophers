@@ -6,7 +6,7 @@
 /*   By: hyunlee <hyunlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 18:10:04 by hyunlee           #+#    #+#             */
-/*   Updated: 2021/06/19 18:10:05 by hyunlee          ###   ########.fr       */
+/*   Updated: 2021/06/19 18:29:44 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,14 @@ void	*check_died(void *args)
 	if (philo->imdied)
 	{
 		sem_post(philo->info->died);
+		sem_post(philo->info->fork);
+		sem_post(philo->info->fork);
 		exit(1);
 	}
 	philo->info->finish = DIED;
 	sem_post(philo->info->died);
+	sem_post(philo->info->fork);
+	sem_post(philo->info->fork);
 	return (NULL);
 }
 
